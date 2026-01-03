@@ -8,14 +8,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "tokens")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TokenEntity {
@@ -31,7 +33,7 @@ public class TokenEntity {
     @Column(nullable = false, unique = true)
     String tokenId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     String email;
 
     @Column(nullable = false)

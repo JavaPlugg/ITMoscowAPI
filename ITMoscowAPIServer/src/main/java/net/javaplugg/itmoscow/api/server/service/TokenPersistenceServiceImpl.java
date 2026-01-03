@@ -23,8 +23,23 @@ public class TokenPersistenceServiceImpl implements TokenPersistenceService {
     }
 
     @Override
-    public Optional<TokenDao> getTokenById(String tokenId) {
+    public Optional<TokenDao> getTokenByRawToken(String rawToken) {
+        int separator = rawToken.indexOf('/');
+        if (separator == -1) {
+            return Optional.empty();
+        }
+        String tokenId = rawToken.substring(0, separator);
         return tokenRepository.findByTokenId(tokenId).map(this::mapToDao);
+    }
+
+    @Override
+    public Optional<TokenDao> getTokenByEmail(String email) {
+        return tokenRepository.findByEmail(email).map(this::mapToDao);
+    }
+
+    @Override
+    public void deleteTokenById(String tokenId) {
+        tokenRepository.deleteByTokenId(tokenId);
     }
 
     private TokenDao mapToDao(TokenEntity tokenEntity) {

@@ -3,15 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.javaplugg.itmoscow.api</groupId>
+        <artifactId>ITMoscowAPI</artifactId>
+        <version>1.0</version>
+    </parent>
 
-    <groupId>net.javaplugg.itmoscow.api</groupId>
-    <artifactId>ITMoscowAPI</artifactId>
-    <version>1.0</version>
-    <packaging>pom</packaging>
-    <modules>
-        <module>ITMoscowAPIServer</module>
-        <module>ITMoscowAPIDTOs</module>
-    </modules>
+    <groupId>net.javaplugg.itmoscow.api.dto</groupId>
+    <artifactId>ITMoscowAPIDTOs</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

@@ -17,14 +17,21 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <dtos.version>1.0</dtos.version>
         <spring.version>3.5.6</spring.version>
         <mysqlconnectorj.version>9.4.0</mysqlconnectorj.version>
         <bcrypt.version>0.10.2</bcrypt.version>
         <caffeine.version>3.2.2</caffeine.version>
+        <jsoup.version>1.15.3</jsoup.version>
         <lombok.version>1.18.30</lombok.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>net.javaplugg.itmoscow.api.dto</groupId>
+            <artifactId>ITMoscowAPIDTOs</artifactId>
+            <version>${dtos.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -64,6 +71,11 @@
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
             <version>${caffeine.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

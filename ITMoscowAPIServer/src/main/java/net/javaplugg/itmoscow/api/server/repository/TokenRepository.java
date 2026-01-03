@@ -7,4 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface TokenRepository extends JpaRepository<TokenEntity, Long> {
 
     Optional<TokenEntity> findByTokenId(String tokenId);
+
+    Optional<TokenEntity> findByEmail(String email);
+
+    void deleteByTokenId(String tokenId);
 }

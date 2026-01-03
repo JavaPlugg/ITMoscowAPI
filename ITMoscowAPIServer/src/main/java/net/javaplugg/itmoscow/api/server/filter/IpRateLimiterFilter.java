@@ -16,6 +16,9 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+/**
+ * Ограничивает количество запросов от IP в минуту
+ */
 @Component
 @RequiredArgsConstructor
 public class IpRateLimiterFilter extends OncePerRequestFilter {
