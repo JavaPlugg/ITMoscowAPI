@@ -20,12 +20,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class BuildingServiceImpl implements BuildingService {
 
-    private static final String QUERY_HEADER = "[class~=sticky][class~=top-0][class~=z-40][class~=bg-white][class~=border-b][class~=border-gray-100][class~=flex][class~=items-center][class~=justify-between][class~=px-4][class~=md:px-\\[70px\\]][class~=py-\\[20px\\]][class~=text-\\[14px\\]][class~=font-semibold][class~=w-full]";
-    private static final String QUERY_NAVIGATION = "[class~=hidden][class~=lg:flex][class~=mx-auto][class~=flex-1][class~=justify-center][class~=gap-\\[22px\\]][class~=self-center][class~=px-\\[60px\\]][class~=py-\\[10px\\]]";
-    private static final String QUERY_BUTTON = "[class~=group][class~=relative]";
-    private static final String QUERY_LIST = "[class~=invisible][class~=absolute][class~=top-full][class~=left-0][class~=z-10][class~=mt-1][class~=w-56][class~=rounded-md][class~=border][class~=border-gray-200][class~=bg-white][class~=opacity-0][class~=shadow-lg][class~=transition-all][class~=duration-200][class~=group-hover:visible][class~=group-hover:opacity-100]";
-    private static final String QUERY_ELEMENT = "[class~=flex][class~=items-center][class~=gap-2][class~=px-4][class~=py-2][class~=text-sm][class~=hover:bg-gray-100]";
-
     private final HtmlFetchingService htmlFetchingService;
     private final String url;
     private final SingleCache<Map<String, String>> buildingCache;
@@ -54,11 +48,11 @@ public class BuildingServiceImpl implements BuildingService {
             Document document = Jsoup.parse(html);
             @SuppressWarnings("DataFlowIssue")
             Elements elements = document
-                    .selectFirst(QUERY_HEADER)
-                    .selectFirst(QUERY_NAVIGATION)
-                    .selectFirst(QUERY_BUTTON)
-                    .selectFirst(QUERY_LIST)
-                    .select(QUERY_ELEMENT);
+                    .selectFirst("[class~=sticky][class~=top-0][class~=z-40][class~=bg-white][class~=border-b][class~=border-gray-100][class~=flex][class~=items-center][class~=justify-between][class~=px-4][class~=md:px-\\[70px\\]][class~=py-\\[20px\\]][class~=text-\\[14px\\]][class~=font-semibold][class~=w-full]")
+                    .selectFirst("[class~=hidden][class~=lg:flex][class~=mx-auto][class~=flex-1][class~=justify-center][class~=gap-\\[22px\\]][class~=self-center][class~=px-\\[60px\\]][class~=py-\\[10px\\]]")
+                    .selectFirst("[class~=group][class~=relative]")
+                    .selectFirst("[class~=invisible][class~=absolute][class~=top-full][class~=left-0][class~=z-10][class~=mt-1][class~=w-56][class~=rounded-md][class~=border][class~=border-gray-200][class~=bg-white][class~=opacity-0][class~=shadow-lg][class~=transition-all][class~=duration-200][class~=group-hover:visible][class~=group-hover:opacity-100]")
+                    .select("[class~=flex][class~=items-center][class~=gap-2][class~=px-4][class~=py-2][class~=text-sm][class~=hover:bg-gray-100]");
             Map<String, String> newCache = elements.stream().map(element -> {
                 String key = element.attr("href").substring(1);
                 String name = element.child(0).text();
