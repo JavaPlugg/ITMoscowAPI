@@ -4,7 +4,7 @@ API для получения корпусов, групп, замен и рас
 
 ### Официальный инстанс
 
-`itmoscow.javaplugg.net`
+`itmoscow.javaplugg.net:8080`
 
 ### Технологии
 
