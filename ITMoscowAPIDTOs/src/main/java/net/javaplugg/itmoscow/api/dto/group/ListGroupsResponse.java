@@ -1,6 +1,7 @@
 package net.javaplugg.itmoscow.api.dto.group;
 
 import java.util.List;
+import net.javaplugg.itmoscow.api.dto.ApiResponse;
 
 /**
  * <h1>Ответ на запрос на получение списка групп</h1>
@@ -18,5 +19,5 @@ import java.util.List;
  * </code></pre>
  * @param groups группы
  */
-public record ListGroupsResponse(List<Group> groups) {
+public record ListGroupsResponse(List<Group> groups) implements ApiResponse {
 }

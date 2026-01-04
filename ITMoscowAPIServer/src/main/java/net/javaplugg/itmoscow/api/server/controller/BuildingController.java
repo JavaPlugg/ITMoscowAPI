@@ -3,6 +3,7 @@ package net.javaplugg.itmoscow.api.server.controller;
 import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.javaplugg.itmoscow.api.dto.ApiResponse;
 import net.javaplugg.itmoscow.api.dto.building.ListBuildingsResponse;
 import net.javaplugg.itmoscow.api.server.service.BuildingService;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class BuildingController {
     private final BuildingService buildingService;
 
     @GetMapping("/list")
-    public CompletableFuture<ResponseEntity<ListBuildingsResponse>> list() {
+    public CompletableFuture<ResponseEntity<ApiResponse>> list() {
         return buildingService
                 .getAllBuildings()
                 .thenApply(ListBuildingsResponse::new)

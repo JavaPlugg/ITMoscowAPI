@@ -3,6 +3,7 @@ package net.javaplugg.itmoscow.api.server.controller;
 import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.javaplugg.itmoscow.api.dto.ApiResponse;
 import net.javaplugg.itmoscow.api.dto.ErrorResponse;
 import net.javaplugg.itmoscow.api.dto.schedule.ReplacementsForTodayRequest;
 import net.javaplugg.itmoscow.api.dto.schedule.ReplacementsForTodayResponse;
@@ -27,14 +28,14 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @PostMapping("/day")
-    public CompletableFuture<ResponseEntity<Object>> day(@RequestBody ScheduleForDayRequest request) {
+    public CompletableFuture<ResponseEntity<ApiResponse>> day(@RequestBody ScheduleForDayRequest request) {
         return scheduleService.getScheduleForDay(
                         request.building(),
                         request.group(),
                         request.weekday(),
                         request.replacements()
-                ).thenApply(ScheduleForDayResponse::new)
-                .thenApply(schedule -> ResponseEntity.ok((Object) schedule))
+                ).thenApply(schedule -> (ApiResponse) new ScheduleForDayResponse(schedule))
+                .thenApply(ResponseEntity::ok)
                 .exceptionally(throwable -> throwable.getCause() instanceof CannotApplyReplacementsException
                         ? ResponseEntity.badRequest().body(new ErrorResponse("Нельзя применить замены к расписанию не сегодняшнего дня"))
                         : ResponseEntity.internalServerError().body(new ErrorResponse(ERROR_GENERAL))
@@ -42,7 +43,7 @@ public class ScheduleController {
     }
 
     @PostMapping("/replacements")
-    public CompletableFuture<ResponseEntity<ReplacementsForTodayResponse>> replacements(@RequestBody ReplacementsForTodayRequest request) {
+    public CompletableFuture<ResponseEntity<ApiResponse>> replacements(@RequestBody ReplacementsForTodayRequest request) {
         return scheduleService.getReplacementsForToday(
                         request.building(),
                         request.group()

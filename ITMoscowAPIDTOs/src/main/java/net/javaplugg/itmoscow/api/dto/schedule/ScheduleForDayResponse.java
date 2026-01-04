@@ -1,5 +1,7 @@
 package net.javaplugg.itmoscow.api.dto.schedule;
 
+import net.javaplugg.itmoscow.api.dto.ApiResponse;
+
 /**
  * <h1>Ответ на запрос на получение расписания на указанный день</h1>
  * <pre><code>
@@ -20,5 +22,5 @@ package net.javaplugg.itmoscow.api.dto.schedule;
  * </code></pre>
  * @param schedule расписание
  */
-public record ScheduleForDayResponse(Schedule schedule) {
+public record ScheduleForDayResponse(Schedule schedule) implements ApiResponse {
 }

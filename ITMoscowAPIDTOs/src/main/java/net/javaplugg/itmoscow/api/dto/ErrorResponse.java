@@ -13,7 +13,7 @@ import java.util.Map;
  * @param message сообщение
  * @param details детали
  */
-public record ErrorResponse(String message, Map<String, Object> details) {
+public record ErrorResponse(String message, Map<String, Object> details) implements ApiResponse {
 
     public ErrorResponse(String message) {
         this(message, null);

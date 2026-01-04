@@ -2,6 +2,7 @@ package net.javaplugg.itmoscow.api.server.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.javaplugg.itmoscow.api.dto.ApiResponse;
 import net.javaplugg.itmoscow.api.dto.ErrorResponse;
 import net.javaplugg.itmoscow.api.dto.auth.RequestOTPRequest;
 import net.javaplugg.itmoscow.api.dto.auth.RequestTokenRequest;
@@ -48,7 +49,7 @@ public class AuthenticationController {
     private final MailService mailService;
 
     @PostMapping("/otp")
-    public ResponseEntity<?> otp(@RequestBody RequestOTPRequest request) {
+    public ResponseEntity<ApiResponse> otp(@RequestBody RequestOTPRequest request) {
         String email = request.email().toLowerCase().trim();
         try {
             String otp = authenticationService.generateOTP(email);
@@ -70,7 +71,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/token")
-    public ResponseEntity<?> token(@RequestBody RequestTokenRequest request) {
+    public ResponseEntity<ApiResponse> token(@RequestBody RequestTokenRequest request) {
         String otp = request.otp();
         String token = "";
         try {

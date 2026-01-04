@@ -3,6 +3,7 @@ package net.javaplugg.itmoscow.api.server.controller;
 import java.util.concurrent.CompletableFuture;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.javaplugg.itmoscow.api.dto.ApiResponse;
 import net.javaplugg.itmoscow.api.dto.group.ListGroupsRequest;
 import net.javaplugg.itmoscow.api.dto.group.ListGroupsResponse;
 import net.javaplugg.itmoscow.api.server.service.GroupService;
@@ -21,7 +22,7 @@ public class GroupController {
     private final GroupService groupService;
 
     @PostMapping("/list")
-    public CompletableFuture<ResponseEntity<ListGroupsResponse>> list(@RequestBody ListGroupsRequest request) {
+    public CompletableFuture<ResponseEntity<ApiResponse>> list(@RequestBody ListGroupsRequest request) {
         return groupService
                 .getGroupsByBuilding(request.building())
                 .thenApply(ListGroupsResponse::new)

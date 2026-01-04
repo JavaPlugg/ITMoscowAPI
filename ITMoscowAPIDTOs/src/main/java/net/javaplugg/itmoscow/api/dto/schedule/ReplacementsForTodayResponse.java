@@ -1,6 +1,7 @@
 package net.javaplugg.itmoscow.api.dto.schedule;
 
 import java.util.List;
+import net.javaplugg.itmoscow.api.dto.ApiResponse;
 
 /**
  * <h1>Ответ на запрос на получение сегодняшних замен</h1>
@@ -18,5 +19,5 @@ import java.util.List;
  * </code></pre>
  * @param replacements замены
  */
-public record ReplacementsForTodayResponse(List<Replacement> replacements) {
+public record ReplacementsForTodayResponse(List<Replacement> replacements) implements ApiResponse {
 }
